@@ -54,8 +54,13 @@ code {
   align-items: center;
   display: flex;
   border-color: aqua;
-  background-color: #005555;
+  /* background-color: #E0284C; */
+  background-image: url("../public/images/background.jpg");
   /* background-image: "./client/public/images/backgroung.svg"; */
+  background-size: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
   
 }
 
@@ -75,10 +80,20 @@ code {
 }
 
 .primary-button {
-  background-color: #005555 !important;
-  width: 100%;
+  background-color: #E0284C !important;
+  width: 30%;
+  margin: 0 auto;
   height: 40px;
   color: white !important;
+  font-size: 16px;
+  border: 0;
+}
+.primary-button:hover{
+  background-color: black !important;
+  width: 25%;
+  margin: 0 auto;
+  height: 40px;
+  color: #fff !important;
   font-size: 16px;
   border: 0;
 }

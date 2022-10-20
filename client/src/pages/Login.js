@@ -43,7 +43,7 @@ function Login() {
       <div className='authentication-form card p-3'>
         
         
-        <h1 className='card-title'>Login to Vision-X</h1>
+        <h1 className='card-title'>Login to GO MOBIT</h1>
         <Form layout="vertical" onFinish={onFinish}>
          
 

@@ -10,7 +10,7 @@ import ProtectedRoute from "./Components/ProtectedRoute.js";
 import PublicRoute from "./Components/PublicRoute.js";
 import Addmobuser from "./Components/Addmobuser.js";
 import Viewusers from "./pages/Viewusers.js";
-
+// jj
 
 function App() {
   const { loading } = useSelector((state) => state.alerts)
@@ -23,12 +23,15 @@ function App() {
         </div>}
         <Toaster reverseOrder={false} position="top-center" />
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/" element={<ProtectedRoute><Addmobuser /></ProtectedRoute>}
+           />
+          
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path="/adduser" element={<ProtectedRoute><Addmobuser /></ProtectedRoute>} />
+          {/* <Route path="/adduser" element={<ProtectedRoute><Addmobuser /></ProtectedRoute>} /> */}
           <Route path="/viewusers" element={<ProtectedRoute><Viewusers /></ProtectedRoute>} />
 
+        
 
 
 

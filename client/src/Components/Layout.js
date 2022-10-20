@@ -5,14 +5,10 @@ import "../../src/Layout.css"
 function Layout({ children }) {
     const navigate = useNavigate();
     const userMenu = [
-        {
-            name: "Home",
-            path: "/",
-            icon: "ri-home-8-line",
-        },
+      
         {
             name: "Add User",
-            path: "/adduser",
+            path: "/",
             icon: "ri-user-add-line",
             
         },
@@ -58,9 +54,9 @@ function Layout({ children }) {
                     </div>
                 </div>
                 <div className="content">
-                    <div className="header">
+                    {/* <div className="header">
                         header
-                    </div>
+                    </div> */}
                     <div className="body">
                         {children}
                     </div>

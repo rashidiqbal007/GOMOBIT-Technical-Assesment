@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { toast } from "react-hot-toast"
 import { showLoading, hideLoading } from '../redux/alertsSlice';
 import { useState } from 'react';
-import { message, Table } from 'antd';
+import { message, Table, Input, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons'
 
 const Viewusers = () => {
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const Viewusers = () => {
     useEffect(() => {
         (getMobUsersData())
     }, []);
+  
     const columns = [
         {
             title: 'ID',
@@ -51,7 +53,39 @@ const Viewusers = () => {
                 <span>
                     {record.name}
                 </span>
-            )
+            ),
+            filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
+                return (
+                    <>
+                        <Input
+                            autoFocus
+                            placeholder='Search User'
+                            value={selectedKeys[0]}
+                            onChange={(e) => {
+                                setSelectedKeys(e.target.value ? [e.target.value] : [])
+                                confirm({ closeDropdown: false });
+                            }}
+                            onPressEnter={() => { confirm() }}
+                            onBlur={() => { confirm() }}
+                        >
+
+                        </Input>
+                        <Button onClick={() => { confirm() }} type='primary'>
+                            Search
+                        </Button>
+                        <Button autoFocus
+                            onClick={() => { clearFilters(); confirm() }} type='danger'>
+                            All
+                        </Button>
+                    </>
+                )
+            },
+            filterIcon: () => {
+                return <SearchOutlined />
+            },
+            onFilter: (value, record) => {
+                return record.name.toLowerCase().includes(value.toLowerCase())
+            }
         },
         {
             title: 'Email',
@@ -74,23 +108,12 @@ const Viewusers = () => {
             title: 'Deleted',
             dataIndex: 'isDeleted',
         },
-        // {
-        //     title: 'Actions',
-        //     dataIndex: 'actions',
-        //     render: (text, record) => (
-        //         <div className='d-flex'>
 
-        //             {record.status === "pending" && <h1 className='anchor' onClick={() => changeDoctorStatus(record, "approved")}>Approve </h1>}
-        //             {record.status === "approved" && <h1 className='anchor' onClick={() => changeDoctorStatus(record, "blocked")}>Block </h1>}
-
-
-        //         </div>
-        //     )
-        // },
     ];
     return (
         <Layout>
             <h1 className='page-header'>Users List</h1>
+
             <Table dataSource={mobusers} columns={columns} />
         </Layout>
     )

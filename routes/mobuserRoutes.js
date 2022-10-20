@@ -8,6 +8,13 @@ const authMiddleware = require("../Middlewares/authMiddlewares")
 
 router.post("/add-mob-user", authMiddleware, async (req, res) => {
     try {
+        const userExists = await MobUser.findOne({ email: req.body.email })
+        if (userExists) {
+
+            res.status(200).send({ message: "User Already Exists", success: false });
+
+        }
+        else{
         const newmobuser = new MobUser({ ...req.body });
         await newmobuser.save();
         res.status(200).send({
@@ -15,6 +22,7 @@ router.post("/add-mob-user", authMiddleware, async (req, res) => {
             success: true,
         })
     }
+}
     catch (error) {
         console.log(error);
         res.status(500).send({ message: "Error adding new user to database", success: false, error });
