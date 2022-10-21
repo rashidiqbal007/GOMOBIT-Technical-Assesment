@@ -9,21 +9,19 @@ import { hideLoading, showLoading } from '../redux/alertsSlice'
 function Login() {
   // redux alertloader
   const dispatch = useDispatch()
-  // const {loading}  = useSelector(state => state.alerts)
-  // console.log(loading)
+
     const navigate = useNavigate();
     const onFinish = async(values) => {
       try {
         dispatch(showLoading())
-        // wait kro response ka jo request bheji ha
+       
         const response = await axios.post('/api/user/login' , values)
         // whatever is the response we need to hideloader
         dispatch(hideLoading())
         if(response.data.success){
           toast.success(response.data.message)
           toast("Redirecting to Home page");
-          // put info you are getting from the backend in the local storage
-          // data.data is getting token from login post API
+         
           localStorage.setItem("token", response.data.data);
           navigate("/")
   

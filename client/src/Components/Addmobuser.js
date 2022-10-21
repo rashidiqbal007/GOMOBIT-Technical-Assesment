@@ -10,10 +10,10 @@ import moment from 'moment'
 import Layout from "../Components/Layout"
 const Addmobuser = () => {
     const dispatch = useDispatch();
-    // const { user } = useSelector(state => state.user)
+    
     const navigate = useNavigate();
     const onFinish = async (values) => {
-        // console.log("Success",values);
+       
         try {
             dispatch(showLoading())
             const response = await axios.post('/api/mobuser/add-mob-user',
@@ -29,7 +29,7 @@ const Addmobuser = () => {
             dispatch(hideLoading())
             if (response.data.success) {
                 toast.success(response.data.message)
-                // toast("Redirecting to Login page");
+              
                 navigate("/viewusers")
 
             }
